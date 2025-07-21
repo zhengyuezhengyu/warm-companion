@@ -2,16 +2,16 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>暖心陪伴 - 心情记录与安慰应用</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="manifest" href="/manifest.json">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Helvetica Neue', Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -20,7 +20,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 15px;
+            overflow-x: hidden;
         }
 
         .container {
@@ -29,44 +30,46 @@
             background: white;
             border-radius: 20px;
             box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
             display: flex;
             flex-direction: column;
-            height: 90vh;
+            height: 100%;
+            max-height: 95vh;
             position: relative;
+            overflow: hidden;
         }
 
         header {
             background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
             color: white;
-            padding: 25px 30px;
+            padding: 20px 15px;
             text-align: center;
             position: relative;
+            flex-shrink: 0;
         }
 
         .logo {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .logo i {
-            font-size: 2.8rem;
-            margin-right: 15px;
+            font-size: 2.2rem;
+            margin-right: 12px;
             color: #ffffff;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             letter-spacing: 0.5px;
         }
 
         .subtitle {
-            font-size: 1.1rem;
+            font-size: 1rem;
             opacity: 0.9;
             max-width: 500px;
             margin: 0 auto;
@@ -74,22 +77,24 @@
 
         .main-content {
             display: flex;
+            flex-direction: column;
             flex: 1;
             overflow: hidden;
         }
 
         .mood-section {
-            flex: 1;
-            padding: 25px;
+            padding: 20px 15px;
             display: flex;
             flex-direction: column;
             background: #f9fbfd;
+            flex: 1;
+            overflow: hidden;
         }
 
         .section-title {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: #2d3748;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
         }
@@ -102,14 +107,14 @@
         .mood-selector {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-bottom: 30px;
+            gap: 12px;
+            margin-bottom: 20px;
         }
 
         .mood-option {
             background: white;
             border-radius: 12px;
-            padding: 20px 15px;
+            padding: 15px 10px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -128,8 +133,8 @@
         }
 
         .mood-option i {
-            font-size: 2.5rem;
-            margin-bottom: 12px;
+            font-size: 2rem;
+            margin-bottom: 8px;
             display: block;
         }
 
@@ -141,20 +146,20 @@
         .mood-option.tired i { color: #a0aec0; }
 
         .mood-option span {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 500;
             color: #4a5568;
         }
 
         textarea {
             width: 100%;
-            height: 120px;
-            padding: 15px;
+            height: 100px;
+            padding: 12px;
             border-radius: 12px;
             border: 2px solid #e2e8f0;
-            font-size: 1rem;
+            font-size: 0.95rem;
             resize: none;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             transition: border-color 0.3s;
         }
 
@@ -167,9 +172,9 @@
             background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
             color: white;
             border: none;
-            padding: 14px 25px;
+            padding: 12px 20px;
             border-radius: 12px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -177,6 +182,7 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 4px 10px rgba(133, 249, 176, 0.3);
+            margin-bottom: 15px;
         }
 
         .btn:hover {
@@ -189,26 +195,27 @@
         }
 
         .history-section {
-            flex: 1;
-            padding: 25px;
+            padding: 20px 15px;
             background: #fff;
             display: flex;
             flex-direction: column;
-            border-left: 1px solid #edf2f7;
-            overflow-y: hidden;
+            border-top: 1px solid #edf2f7;
+            flex: 1;
+            overflow: hidden;
         }
 
         .history-list {
             flex: 1;
             overflow-y: auto;
-            padding-right: 10px;
+            -webkit-overflow-scrolling: touch;
+            padding-right: 8px;
         }
 
         .history-item {
             background: #f9fbfd;
             border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
+            padding: 18px;
+            margin-bottom: 12px;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
             border-left: 4px solid #4fd1c5;
             animation: fadeIn 0.5s ease;
@@ -271,7 +278,7 @@
         }
 
         .date {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #a0aec0;
         }
 
@@ -285,67 +292,67 @@
 
         .no-history {
             text-align: center;
-            padding: 40px 20px;
+            padding: 30px 15px;
             color: #a0aec0;
         }
 
         .no-history i {
-            font-size: 3rem;
-            margin-bottom: 15px;
+            font-size: 2.5rem;
+            margin-bottom: 12px;
             opacity: 0.5;
         }
 
         .no-history p {
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .comfort-section {
             background: linear-gradient(120deg, #fff9db 0%, #fff3bf 100%);
             border-radius: 15px;
-            padding: 25px;
-            margin-top: 20px;
+            padding: 20px;
+            margin-top: 15px;
             border: 1px solid #ffec99;
             animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(255, 212, 59, 0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(255, 212, 59, 0); }
+            70% { box-shadow: 0 0 0 12px rgba(255, 212, 59, 0); }
             100% { box-shadow: 0 0 0 0 rgba(255, 212, 59, 0); }
         }
 
         .comfort-header {
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             color: #e67700;
         }
 
         .comfort-header i {
-            font-size: 1.8rem;
-            margin-right: 12px;
+            font-size: 1.6rem;
+            margin-right: 10px;
         }
 
         .comfort-message {
-            font-size: 1.1rem;
+            font-size: 1rem;
             line-height: 1.6;
             color: #5c3c00;
         }
 
         .comfort-message p {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .generate-btn {
             background: #ffd43b;
             color: #5c3c00;
             border: none;
-            padding: 12px 20px;
+            padding: 10px 15px;
             border-radius: 10px;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 500;
             cursor: pointer;
-            margin-top: 15px;
+            margin-top: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -362,17 +369,19 @@
             justify-content: space-between;
             margin-bottom: 15px;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .search-box {
             position: relative;
             flex: 1;
             margin-right: 10px;
+            min-width: 150px;
         }
 
         .search-box input {
             width: 100%;
-            padding: 10px 15px 10px 40px;
+            padding: 10px 15px 10px 35px;
             border-radius: 20px;
             border: 1px solid #e2e8f0;
             font-size: 0.9rem;
@@ -387,7 +396,7 @@
 
         .search-box i {
             position: absolute;
-            left: 15px;
+            left: 12px;
             top: 50%;
             transform: translateY(-50%);
             color: #a0aec0;
@@ -403,6 +412,7 @@
             cursor: pointer;
             display: flex;
             align-items: center;
+            margin-top: 8px;
         }
 
         .filter-btn i {
@@ -435,22 +445,23 @@
 
         footer {
             text-align: center;
-            padding: 20px;
+            padding: 15px;
             color: #718096;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             border-top: 1px solid #edf2f7;
             background: #f9fbfd;
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
         }
 
         .share-btn {
             background: #6c5ce7;
             color: white;
             border: none;
-            padding: 8px 20px;
+            padding: 8px 18px;
             border-radius: 20px;
             font-size: 0.9rem;
             cursor: pointer;
@@ -467,13 +478,13 @@
         /* 删除按钮样式 */
         .delete-btn {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 12px;
+            right: 12px;
             background: none;
             border: none;
             color: #e53e3e;
             cursor: pointer;
-            font-size: 1.1rem;
+            font-size: 1rem;
             opacity: 0.5;
             transition: all 0.3s ease;
         }
@@ -495,6 +506,7 @@
             margin-left: 10px;
             display: flex;
             align-items: center;
+            margin-top: 8px;
         }
 
         .delete-all-btn:hover {
@@ -504,6 +516,7 @@
         .history-actions {
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         /* 确认删除弹窗样式 */
@@ -523,7 +536,7 @@
         .confirm-content {
             background: white;
             border-radius: 20px;
-            padding: 30px;
+            padding: 25px;
             width: 90%;
             max-width: 400px;
             box-shadow: 0 15px 50px rgba(0,0,0,0.2);
@@ -535,37 +548,37 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             color: #e53e3e;
         }
 
         .confirm-header i {
-            font-size: 2.5rem;
-            margin-right: 12px;
+            font-size: 2.2rem;
+            margin-right: 10px;
         }
 
         .confirm-title {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 600;
         }
 
         .confirm-message {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #4a5568;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             line-height: 1.6;
         }
 
         .confirm-buttons {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
         }
 
         .confirm-btn {
-            padding: 10px 25px;
+            padding: 10px 20px;
             border-radius: 10px;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s;
@@ -590,53 +603,30 @@
             background: #e53e3e;
         }
 
-        /* 添加到主屏幕提示 */
-        .install-prompt {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: white;
-            border-radius: 15px;
-            padding: 15px 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            z-index: 1000;
-            animation: slideUp 0.5s ease-out;
+        /* 微信兼容性修复 */
+        @media screen and (-webkit-min-device-pixel-ratio:0) {
+            .history-list {
+                -webkit-overflow-scrolling: touch;
+            }
         }
 
-        .install-prompt button {
-            background: #4fd1c5;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 8px;
-            font-weight: 500;
-            cursor: pointer;
-        }
-
-        .install-prompt button:hover {
-            background: #38b2ac;
-        }
-
-        .install-prompt .close-prompt {
-            background: none;
-            border: none;
-            font-size: 1.2rem;
-            color: #a0aec0;
-            cursor: pointer;
-        }
-
-        @keyframes slideUp {
-            from { bottom: -100px; opacity: 0; }
-            to { bottom: 20px; opacity: 1; }
-        }
-
+        /* 移动端优化 */
         @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                min-height: 100vh;
+                height: auto;
+            }
+
+            .container {
+                max-height: none;
+                height: auto;
+                min-height: 95vh;
+            }
+
             .main-content {
                 flex-direction: column;
+                overflow: visible;
             }
 
             .history-section {
@@ -648,11 +638,6 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .container {
-                height: auto;
-                max-height: 95vh;
-            }
-
             .history-controls {
                 flex-direction: column;
                 align-items: stretch;
@@ -661,29 +646,16 @@
             .search-box {
                 margin-right: 0;
                 margin-bottom: 10px;
-            }
-
-            footer {
-                flex-direction: column;
-                align-items: center;
+                min-width: auto;
             }
 
             .history-actions {
-                margin-top: 10px;
-                width: 100%;
                 justify-content: flex-end;
+                margin-top: 10px;
             }
 
-            h1 {
-                font-size: 1.8rem;
-            }
-
-            .section-title h2 {
-                font-size: 1.2rem;
-            }
-
-            .logo i {
-                font-size: 2.2rem;
+            .delete-all-btn {
+                margin-left: 0;
             }
         }
 
@@ -693,16 +665,16 @@
             }
 
             .mood-option {
-                padding: 15px 10px;
+                padding: 12px 8px;
             }
 
             .mood-option i {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
 
             .btn, .generate-btn {
-                padding: 12px 15px;
-                font-size: 1rem;
+                padding: 10px 15px;
+                font-size: 0.95rem;
             }
 
             .comfort-section {
@@ -713,10 +685,12 @@
                 padding: 15px;
             }
 
-            .install-prompt {
-                width: 90%;
-                flex-direction: column;
-                text-align: center;
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.1rem;
             }
         }
 
@@ -737,7 +711,7 @@
         .share-content {
             background: white;
             border-radius: 20px;
-            padding: 30px;
+            padding: 25px;
             width: 90%;
             max-width: 500px;
             box-shadow: 0 15px 50px rgba(0,0,0,0.2);
@@ -748,11 +722,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .share-title {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: #2d3748;
             display: flex;
             align-items: center;
@@ -773,15 +747,15 @@
 
         .share-url-container {
             display: flex;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .share-url {
             flex: 1;
-            padding: 12px 15px;
+            padding: 10px 15px;
             border: 1px solid #e2e8f0;
             border-radius: 12px 0 0 12px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -791,7 +765,7 @@
             background: #4fd1c5;
             color: white;
             border: none;
-            padding: 0 20px;
+            padding: 0 18px;
             border-radius: 0 12px 12px 0;
             cursor: pointer;
             transition: all 0.3s;
@@ -804,18 +778,18 @@
         .share-options {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 12px;
+            margin-top: 15px;
         }
 
         .share-option {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: white;
             cursor: pointer;
             transition: all 0.3s;
@@ -843,9 +817,9 @@
 
         .share-note {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 15px;
             color: #a0aec0;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
     </style>
 </head>
@@ -964,7 +938,7 @@
         </div>
 
         <footer>
-            <p>暖心陪伴 © 2025 | 你的情感值得被看见和关心</p>
+            <p>暖心陪伴 © 2023 | 你的情感值得被看见和关心</p>
             <button class="share-btn" id="share-btn">
                 <i class="fas fa-share-alt"></i> 分享我的心情记录
             </button>
@@ -1042,16 +1016,6 @@
         </div>
     </div>
 
-    <!-- 添加到主屏幕提示 -->
-    <div class="install-prompt" id="install-prompt" style="display: none;">
-        <div>
-            <i class="fas fa-mobile-alt"></i>
-            添加到主屏幕，随时随地记录心情！
-        </div>
-        <button id="install-btn">添加</button>
-        <button class="close-prompt" id="close-prompt">&times;</button>
-    </div>
-
     <script>
         // 安慰语库
         const comfortMessages = {
@@ -1125,7 +1089,6 @@
         let history = [];
         let displayedItems = 5; // 默认显示的项目数量
         let currentDeleteId = null; // 当前待删除的条目ID
-        let deferredPrompt; // 用于添加到主屏幕
 
         // DOM 元素
         const moodOptions = document.querySelectorAll('.mood-option');
@@ -1150,9 +1113,6 @@
         const confirmAllCancel = document.getElementById('confirm-all-cancel');
         const confirmAllDelete = document.getElementById('confirm-all-delete');
         const deleteAllBtn = document.getElementById('delete-all-btn');
-        const installPrompt = document.getElementById('install-prompt');
-        const installBtn = document.getElementById('install-btn');
-        const closePromptBtn = document.getElementById('close-prompt');
 
         // 初始化
         document.addEventListener('DOMContentLoaded', function() {
@@ -1260,39 +1220,8 @@
                 }
             });
 
-            // 添加到主屏幕提示
-            closePromptBtn.addEventListener('click', function() {
-                installPrompt.style.display = 'none';
-            });
-
-            installBtn.addEventListener('click', function() {
-                if (deferredPrompt) {
-                    deferredPrompt.prompt();
-                    deferredPrompt.userChoice.then(choiceResult => {
-                        if (choiceResult.outcome === 'accepted') {
-                            console.log('用户同意添加到主屏幕');
-                        } else {
-                            console.log('用户拒绝添加到主屏幕');
-                        }
-                        deferredPrompt = null;
-                    });
-                }
-                installPrompt.style.display = 'none';
-            });
-
             // 加载URL中的分享数据
             loadSharedDataFromUrl();
-        });
-
-        // 监听添加到主屏幕事件
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-
-            // 显示提示
-            setTimeout(() => {
-                installPrompt.style.display = 'flex';
-            }, 3000);
         });
 
         // 生成安慰语
